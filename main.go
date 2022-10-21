@@ -21,15 +21,15 @@ func main() {
 		})
 	})
 
-	e.POST("/encode", func(c echo.Context) error {
+	e.POST("/api/encode", func(c echo.Context) error {
 		return handler.CreateShortURL(c)
 	})
 
-	e.GET("/:short-url", func(c echo.Context) error {
+	e.GET("/api/:short-url", func(c echo.Context) error {
 		return handler.RedirectToLongURL(c)
 	})
 
-	e.GET("/decode/:short-url", func(c echo.Context) error {
+	e.GET("/api/decode/:short-url", func(c echo.Context) error {
 		return handler.ReturnLongURL(c)
 	})
 
