@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/big"
 	"os"
+	"strings"
 
 	"github.com/itchyny/base58-go"
 )
@@ -28,7 +29,8 @@ func base58Encoded(bytes []byte) string {
 func GenerateShortURL(initialLink string, userId string, customText string) string {
 	if customText != "" {
 		//strip of any whitespace and convert to lowercase
-		customText = customText + userId
+		customText = strings.ToLower(customText)
+		customText = strings.Replace(customText, " ", "", -1)
 		return customText
 	}
 	urlHashBytes := sha256Of(initialLink + userId)

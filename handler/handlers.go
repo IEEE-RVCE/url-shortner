@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-const host = "http://localhost:1323/"
+const host = "http://localhost:8080/"
 
 // URLCreationRequest is request model definition
 type URLCreationRequest struct {
