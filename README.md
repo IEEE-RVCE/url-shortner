@@ -81,10 +81,10 @@ Redirects to the long url, passing 301 status code.
 
 ## TBD
 
-[] Dockerise the whole thing;
-[] Check If the short_url is valid iff redirect; if not then display a page with proper error message
-[] Right Now we are storing the data for 6 hours, should see into making it store permanently
-[] Should add a way to delete the data
-[] Should add a way to update the data
-[] Analytics? (Is it possible to track no of clicks, location , etc...)
-[] Maybe a UI to add Data
+- [x] Dockerise the whole thing;
+- [] Check If the short_url is valid iff redirect; if not then display a page with proper error message
+- [] Right Now we are storing the data for 6 hours, should see into making it store permanently
+- [] Should add a way to delete the data
+- [] Should add a way to update the data
+- [] Analytics? (Is it possible to track no of clicks, location , etc...)
+- [] Maybe a UI to add Data
