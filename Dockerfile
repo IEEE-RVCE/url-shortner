@@ -1,20 +1,20 @@
-FROM golang:1.16-alpine
+# Base image
+FROM golang:1.17-alpine
 
-ENV GO111MODULE=on
-ENV APP_HOME /app
+# Set working directory
+WORKDIR /app
 
-RUN mkdir -p "$APP_HOME"
+# Copy source code to container
+COPY . .
 
-WORKDIR "$APP_HOME"
-
-COPY go.mod ./
-COPY go.sum ./
+# Install dependencies
 RUN go mod download
 
-COPY *.go ./
+# Build the binary
+RUN go build -o main .
 
-RUN go build -o /url-shortener
-
+# Expose the port
 EXPOSE 8080
 
-CMD [ "/url-shortener" ]
+# Command to run the executable
+CMD ["./main"]

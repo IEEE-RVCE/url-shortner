@@ -3,8 +3,9 @@ package store
 import (
 	"context"
 	"fmt"
-	"github.com/go-redis/redis/v9"
 	"time"
+
+	"github.com/go-redis/redis/v9"
 )
 
 // StorageService is struct wrapper around raw Redis client
@@ -23,7 +24,7 @@ const CacheDuration = 6 * time.Hour
 // InitializeStore is initializing the store service and return a store pointer
 func InitializeStore() *StorageService {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "redis:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
@@ -48,6 +49,7 @@ func SaveURLInRedis(shortURL, originalURL string) {
 
 func RetrieveInitialURLFromRedis(shortURL string) string {
 	result, err := storeService.redisClient.Get(ctx, shortURL).Result()
+	fmt.Printf("Retrieved from Redis: %s -> %s", shortURL, result)
 	if err != nil {
 		panic(fmt.Sprintf("Failed RetrieveInitialURLFromRedis | Error: %v - shortURL: %s\n",
 			err, shortURL))

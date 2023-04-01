@@ -1,7 +1,7 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
 
 	"github.com/IEEE-RVCE/url-shortner/handler"
 	"github.com/IEEE-RVCE/url-shortner/store"
@@ -12,14 +12,13 @@ import (
 
 func main() {
 	e := echo.New()
-
-	e.Use(middleware.CORS())
-
-	e.GET("/", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, map[string]interface{}{
-			"message": "Welcome to Go URL Shortener with Redis !🚀",
-		})
-	})
+	e.Static("/", "client")
+	// allow localhost:3000 to make requests to our API
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
+	// e.Use(middleware.CORS())
 
 	e.POST("/api/encode", func(c echo.Context) error {
 		return handler.CreateShortURL(c)
@@ -30,6 +29,7 @@ func main() {
 	})
 
 	e.GET("/api/decode/:short-url", func(c echo.Context) error {
+		fmt.Print(c)
 		return handler.ReturnLongURL(c)
 	})
 

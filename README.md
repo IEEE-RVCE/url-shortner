@@ -32,7 +32,11 @@ go build .
 
 ## How this works
 
-TBD
+![How this works](arch.png)
+
+### Decoding
+
+When the user makes a request to decode endpoint, handler forwards the request to store and the store checks if the short url is already present in the redis, if it is present then it redirects to the long url
 
 ## API DOC
 
