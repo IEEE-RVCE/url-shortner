@@ -27,8 +27,8 @@
     </template>
     <div v-if="shortUrl && loggedIn">
       <h2>Shortened URL:</h2>
-      <p>{{shortUrl}}</p>
-      <button @click="copyShortUrl">Copy</button>`
+      <a class="url" :href="shortUrl" target="_blank" rel="noopener noreferrer">{{shortUrl}}</a>
+      <button @click="copyShortUrl">Copy</button>
     </div>
   </div>
 </div>
@@ -87,7 +87,7 @@
         }
 
         if (!data.ok) {
-          window.alert(`Failed to login: ${data.message}`);
+          window.alert(`Failed to login: Bad Creds, better luck next time!`);
           return;
         }
 

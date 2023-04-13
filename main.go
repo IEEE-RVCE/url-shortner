@@ -24,7 +24,7 @@ func main() {
 		return handler.CreateShortURL(c)
 	})
 
-	e.GET("/api/:short-url", func(c echo.Context) error {
+	e.GET("/:short-url", func(c echo.Context) error {
 		return handler.RedirectToLongURL(c)
 	})
 

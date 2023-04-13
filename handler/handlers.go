@@ -46,7 +46,7 @@ func CreateShortURL(c echo.Context) error {
 	store.SaveURLInRedis(shortUrl, cr.LongURL)
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"short_url": host + "/api/" + shortUrl,
+		"short_url": host + "/" + shortUrl,
 	})
 }
 
@@ -66,7 +66,7 @@ func ReturnLongURL(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"short_url": host + "/api/" + shortUrl,
+		"short_url": host + "/" + shortUrl,
 		"long_url":  initialUrl,
 	})
 }
